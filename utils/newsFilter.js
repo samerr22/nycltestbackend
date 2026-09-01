@@ -62,5 +62,5 @@ export function basicNewsFilter(article) {
     text.includes(word)
   );
 
-  return matches.length >= 2;
+  return matches.length >= 1;
 }

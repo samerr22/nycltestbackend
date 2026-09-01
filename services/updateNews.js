@@ -144,7 +144,7 @@ export async function updateDailyNews() {
       }
 
 
-      if (ai.relevanceScore < 80) {
+     if (ai.relevanceScore < 85) {
 
         aiRejectedCount++;
 
@@ -184,31 +184,32 @@ export async function updateDailyNews() {
       // ====================================
 
       await News.create({
+  title: article.title,
 
-        title: article.title,
+  description: ai.summary,
 
-        description: ai.summary,
+  content: article.content || article.description,
 
-        content: article.description,
-        image: article.image || null,
-        url: article.url,
+  image: article.image || null,
 
-        source: article.sourceName,
+  url: article.url,
 
-        category: ai.category,
+  source: article.sourceName,
 
-        publishedAt: article.publishedAt,
+  category: ai.category,
 
-        relevanceScore: ai.relevanceScore,
+  publishedAt: article.publishedAt,
 
-        isProfessional: ai.isProfessional,
+  relevanceScore: ai.relevanceScore,
 
-        isGossip: ai.isGossip,
+  isProfessional: ai.isProfessional,
 
-        aiProcessed: true,
+  isGossip: ai.isGossip,
 
-        fetchedAt: new Date(),
-      });
+  aiProcessed: true,
+
+  fetchedAt: new Date(),
+});
 
 
       savedCount++;

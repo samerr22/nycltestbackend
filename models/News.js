@@ -1,3 +1,5 @@
+// models/News.js
+
 import mongoose from "mongoose";
 
 const newsSchema = new mongoose.Schema(
@@ -17,6 +19,7 @@ const newsSchema = new mongoose.Schema(
 
     image: {
       type: String,
+      default: null,
     },
 
     url: {
@@ -30,30 +33,49 @@ const newsSchema = new mongoose.Schema(
     },
 
     category: {
-  type: String,
-  enum: [
-    "Ocean Freight",
-    "Air Freight",
-    "Road Freight",
-    "Freight Forwarding",
-    "Supply Chain",
-    "Import & Export"
-  ],
-  required: true
-},
+      type: String,
+
+      enum: [
+        "Ocean Freight",
+        "Air Freight",
+        "Road Freight",
+        "Freight Forwarding",
+        "Supply Chain",
+        "Import & Export",
+      ],
+
+      required: true,
+    },
 
     isSaved: {
-  type: Boolean,
-  default: false,
-},
+      type: Boolean,
+      default: false,
+    },
+
+    relevanceScore: {
+      type: Number,
+      default: 0,
+    },
+
+    isProfessional: {
+      type: Boolean,
+      default: false,
+    },
+
+    isGossip: {
+      type: Boolean,
+      default: false,
+    },
+
+    aiProcessed: {
+      type: Boolean,
+      default: false,
+    },
 
     publishedAt: {
       type: Date,
     },
 
-
-    // IMPORTANT
-    // When we fetched from GNews
     fetchedAt: {
       type: Date,
       default: Date.now,
@@ -61,10 +83,9 @@ const newsSchema = new mongoose.Schema(
   },
 
   {
-    timestamps:true
+    timestamps: true,
   }
 );
-
 
 export default mongoose.model(
   "News",
